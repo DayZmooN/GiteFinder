@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Trouver le gîte idéal pour vos vacances ou séjours.">
+
+		{% block stylesheet %}
+			<link rel="stylesheet" href="{{ asset('/css/connect.css') }}">
+			<link rel="stylesheet" href="{{ asset('/css/font.css') }}">
+			<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+			<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+		{% endblock %}
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+	</head>
+
+	<body>
+		{% block header %}{% endblock %}
+
+		{% block filters %}{% endblock %}
+
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+
+		{% include 'footer.html.twig' %}
+
+		{% block javascripts %}
+			<script defer src="https://kit.fontawesome.com/d81be7d66b.js" crossorigin="anonymous"></script>
+			<script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+			<script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+			<script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+			<script defer src="{{ asset('/js/main.js') }}"></script>
+			<script defer src="{{ asset('/js/modal-footer.js') }}"></script>
+			<script defer src="{{ asset('/js/star.js') }}"></script>
+			<script defer src="{{ asset('/js/filter-slider.js') }}"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9"></script>
+			<script defer src="{{ asset('/js/calendrier.js') }}"></script>
+			<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+			<script>
+				AOS.init({
+duration: 600, // Durée de l'animation en ms
+});
+			</script>
+
+		{% endblock %}
+
+	</body>
+</html>

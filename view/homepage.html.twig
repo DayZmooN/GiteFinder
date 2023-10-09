@@ -1,0 +1,62 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Bienvenue sur GiteFinder
+{% endblock %}
+
+{% block header %}
+	{% include 'header.html.twig' %}
+{% endblock %}
+
+{% block filters %}
+	{% include "filter.html.twig" with {'categories' : cats } %}
+{% endblock %}
+
+
+{% block content %}
+	<section id="homepage" class="limit-size">
+		<div class="gallery-grid">
+			{% for rental in rentals %}
+				<div class="card">
+					{% if session.connect %}
+						{% if rental.id_rental in rentalIdsInWishlist %}
+							<a href="{{ path('deleteFavoris') }}{{ rental.id_rental }}">
+								<img class="heart" src="{{ asset('/media/icon/heart-full.svg') }}" alt="">
+							</a>
+						{% else %}
+							<a href="{{ path('addFavoris') }}{{ rental.id_rental }}">
+								<img class="heart" src="{{ asset('/media/icon/heart-empty.svg') }}" alt="">
+							</a>
+						{% endif %}
+					{% else %}
+						<a href="{{ path('login') }}">
+							<img class="heart" src="{{ asset('/media/icon/heart-empty.svg') }}" alt="">
+						</a>
+					{% endif %}
+					<div class="img-card">
+						<a href="{{ path('baseRental') }}{{ rental.id_rental }}">
+							<img src="{{ asset('/media/images/' ~ rental.cover) }}" alt="gite en Foret">
+						</a>
+					</div>
+					<div class="txt-card">
+						<a href="{{ path('baseRental') }}{{ rental.id_rental }}">
+							<div class="title-card">
+								<div class="h1-card">
+									<h1>{{ rental.title }}</h1>
+								</div>
+								<p>{{ rental.price }}€</p>
+							</div>
+							<h2 class="h2-card">{{ rental.country }}</h2>
+							<div class="note-card">
+								<p>4</p>
+								<span>
+									<img src="{{ asset('/media/icon/etoile.svg') }}" alt="">
+								</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+
+{% endblock %}

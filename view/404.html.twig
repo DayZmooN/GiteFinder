@@ -1,0 +1,26 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Page introuvable
+{% endblock %}
+
+{% block header %}
+	{% include 'header.html.twig' with {'categories' : cats } %}
+{% endblock %}
+
+{% block content %}
+
+	<section id="error">
+		<div id="image">
+			<figure>
+				<img src="{{ asset('/media/images/montagnesrose.jpg') }}" alt="">
+			</figure>
+		</div>
+		<div id="text">
+			<span id="erreur">Erreur 404 : Page not found</span><br>
+			<span>Désolé, cette page est partie en vacances sans nous laisser d'adresse.
+				<br>
+				Nous espérons qu'elle profite bien de sa pause !</span>
+			<a href="{{ path('home') }}">Retour à l'acceuil</a>
+		</div>
+	</section>
+{% endblock %}

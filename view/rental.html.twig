@@ -1,0 +1,82 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Reservation
+{% endblock %}
+
+{% block header %}
+	{% include 'header.html.twig'%}
+{% endblock %}
+
+{% block content %}
+	<!-- rental, reservation -->
+	<section
+		class="rental">
+		<!-- fil d'ariane  breadcrumb -->
+		<nav class="breadcrumb" aria-label="breadcrumb">
+			<ol class="ol-breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{{ path('dashboard') }}">
+						&#x3008; Dashboard</a>
+				</li>
+			</ol>
+		</nav>
+
+		{% if reservations|length == 0 %}
+			<p>Vous n'avez fait aucune réservation.</p>
+		{% else %}
+			{% for reservation in reservations %}
+				{% for rental in rentals %}
+					{% if rental.id_rental == reservation.id_rental %}
+						<div class="container-rental">
+							<div class="card-rental">
+								<div class="img-card-rental">
+									<img class="img-rental" src="{{ asset('/media/images/' ~ rental.cover) }}" alt="{{ rental.title }}">
+								</div>
+								<div class="content-rental-card">
+									<div class="title-prince">
+										<div class="title">
+											<h1>{{ rental.title }}</h1>
+											<span>{{ rental.address }}</span>
+										</div>
+										<div class="prince">
+											<span>{{ reservation.total_price }}</span>
+											<span>€</span>
+										</div>
+									</div>
+									<div class="personne">
+										<span>Capacitées:
+										</span>
+										<span>
+											{{ reservation.num_guest }}
+										</span>
+										<span>personnes</span>
+									</div>
+									<div class="date-rental">
+										<span>Date :</span>
+										<span class="date-arrivee">{{ reservation.checkin_date }}</span>
+										<span>au</span>
+										<span class="date-depart">{{ reservation.checkout_date }}</span>
+									</div>
+								</div>
+								<!-- button reserver wait annuler -->
+								<div class="btn-rental-card">
+									<form action="#">
+										<button id="reserver" type="submit">reserver</button>
+									</form>
+									<form action="#">
+										<button id="wait" type="submit">En cours</button>
+									</form>
+									<form action="{{ path('deleteReservation') }}" method="POST">
+										<input type="hidden" name="id_rental" value="{{ rental.id_rental }}">
+										<button id="annuler" type="submit">Annuler</button>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		{% endif %}
+	</section>
+{% endblock %}

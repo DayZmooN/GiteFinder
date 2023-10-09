@@ -1,0 +1,27 @@
+{% block filters %}
+	<!-- filter -->
+	<section class="filter">
+		<div class="filter-bar-container">
+			<div class="btn-right">
+				<button class="arrow left">
+					&lt;</button>
+			</div>
+			<div class="filter-bar" id="filter-bar">
+				{% for category in categories %}
+					<div class="filter-image-name">
+						<a href="{{ categorieslink }}{{ category.id_category }}">
+							<div class="img-category">
+								<img src="{{ asset('/media/icon/category/' ~ category.tag) }}" alt="{{ category.name }}"></div>
+							<div class="name-category">
+								<span class='name-span-category'>{{ category.name }}</span>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="btn-left">
+				<button class="arrow right">&gt;</button>
+			</div>
+		</div>
+	</section>
+{% endblock %}
